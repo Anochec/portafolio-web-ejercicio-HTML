@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi Portafolio - Desarrollador Web</title>
+
+        /* Optimización: uso de variable CSS para consistencia y facil mantenimiento */
+        <style>
+
+            :root{
+                --primary-color: #2c3e50;
+                --secondary-color: #34495e;
+                --accent-color: #3498db;
+                --hover-color: #2980b9;
+                --bg-light: #ecf0f1;
+                --text-color: #333;
+                --border-color: #ddd;
+                --white: #fff;
+            }
+
+            /* Optimización: Reset básico y box-sizing para evitar problemas de layout */
+            *, *::before, *::after{
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                color: var(--text-color);
+                background-color: var(--white);
+            }
+
+            /* Accesibilidad: Mejor foco para navegación por teclado */
+            a:focus, button:focus, input:focus, textarea:focus, select:focus {
+                outline: 2px solid var(--accent-color);
+                outline-offset: 2px;
+            }
+
+            header {
+                background: var(--primary-color);
+                color: var(--white);
+                padding: 3rem 1rem; /* Mas espacio verticual */
+                text-align: center;
+            }
+
+            h1 { margin: 0 0 0.5rem 0;} /* Reset Márgenes */
+
+            /* Navegación optimizada */
+            nav{
+                background: var(--secondary-color);
+                padding: 0.5rem 1rem;
+                position: sticky; /* Mantiene el menú visible al hacer scroll */
+                top: 0;
+                z-index: 100;
+            }
+
+            nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                flex-wrap: wrap; /* Responsivo: permite que los items bajen si no caben */
+            }
+
+            nav a {
+                color: var(--white);
+                text-decoration: none;
+                padding: 0.5rem 0.75rem;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+                display: inline-block;
+            }
+            nav a:hover {
+                background: var(--accent-color);
+            }
+            main {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            section {
+                margin-bottom: 4rem; /* Más separación entre secciones */
+                scroll-margin-top: 80px; /* Evita que el menu sticky tape el titulo al navegar */
+            }
+
+            h2 {
+                border-bottom: 2px solid var(--accent-color);
+                padding-bottom: 0.5rem;
+                display: inline-block;
+                color: var(--primary-color);
+            }
+
+            /* Hero section mejorado */
+            .hero {
+                text-align: center;
+                background: var(--bg-light);
+                padding: 4rem 2rem;
+                border-radius: 12px;
+                margin-top: 2rem;
+            }
+
+            .grid-proyectos {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+            .proyecto-card {
+                border: 1px solid var(--border-color);
+                padding: 1.5rem;
+                border-radius: 8px;
+                background: var(--white);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                height: flex;
+                flex-direction: column;
+            }
+            .proyecto-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            .proyecto-card h3 {
+                margin-top: 0;
+                color: var(--accent-color);
+            }
+
+            /* Formulario Optimizado */
+
+            .formulario-contacto {
+                max-width: 600px;
+                margin: 0 auto;
+                display: grid;
+                gap: 1.2rem;
+                background: #f9f9f9;
+                padding: 2rem;
+                border-radius: 8px;
+            }
+
+            /*Eliminar el fieldset visualmente pero mantenerlo semantimamente */
+            fieldset{
+                border: none;
+                padding: 0;
+                margin: 0;
+                display: contents; /* Permite que los hijos participen en el grid del form */
+            }
+
+            legend{
+                display: none; /* Ocultamos visualmente */
+            }
+
+            label {
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+                display: block;
+            }
+
+            input, textarea, select {
+                width: 100%;
+                padding: 0.8rem;
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+                font-size: 1rem;
+                font-family: inherit;
+            }
+            /* Boton mejorado */
+            .btn {
+                background: var(--accent-color);
+                color: var(--white);
+                padding: 0.8 1.5rem;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: bold;
+                transition: background-color 0.3s;
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .btn:hover {
+                background: var(--hover-color);
+            }
+
+            .checkbox-group {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .checkbox-group input {
+                width: auto;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+
+            .checkbox-group label {
+                margin: 0;
+                font-weight: normal;
+                cursor: pointer;
+            }
+
+            footer{
+                background: var(--accent-color);
+                color: var(--white)
+                text-align: center;
+                padding: 2rem;
+                margin-top: 4rem;
+            }
+
+            footer a {
+                color: var(--accent-color);
+                text-decoration: none;
+                margin: 0 0.5rem;
+            }
+
+            footer a:hover {
+                text-decoration: underline;
+            }
+
+            /* Media query para dispostivos moviles */
+            @media (max-width: 600px) {
+                header { padding: 1.5rem 1rem;}
+                .hero { padding: 2rem 1rem;}
+                nav ul { gap: 1rem; font-size: 0.9rem; }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Ignacio Carrera</h1>
+            <p>Desarrollador Web Fullstack</p>
+        </header>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mi</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="inicio" class="hero">
+                <h2>Bienvenido a Mi Portafolio</h2>
+                <p>Creo aplicaciones web modernas y funcionales con las ultimas tecnologias</p>
+                <a href="#contacto" class="btn">Contáctame</a>
+            </section>
+
+            <section id="sobre-mi">
+                <h2>Sobre Mí</h2>
+                <article>
+                    <p> Soy un desarrollador web apasionado con experiencia en JavaScript, React y Node.js 
+                        Me especializo en crear experiencias de usuario excepcionales y codigo mantenible</p>
+             
+            <h3>Habilidades</h3>
+            <ul>
+                <li>HTML5, CSS3, JavaScript ES6+</li>
+                <li>React, Node.js, Express</li>
+                <li>SQL, MongoDB</li>
+                <li>Git, Github, CI/CD</li>
+            </ul>
+                </article>
+            </section>
+
+            <section id="proyectos">
+                <h2>Mis Proyectos</h2>
+                <div class="grid-proyectos">
+                    <article class="proyecto-card">
+                        <h3>E-commerce App</h3>
+                        <p>Aplicación de comercio electronico completa con carrito de compras y pagos.</p>
+                        <p><strong>Tecnologias:</strong>React, Node.js, PostgreSQL</p>
+                    </article>
+
+                    <article class="proyecto-card">
+                        <h3>Task Manager</h3>
+                        <p>Gestor de tareas colaborativo con tiempo real usando WebSockets.</p>
+                        <p><strong>Tecnologias</strong>Vue.js, Socket.io, MongoDB</p>
+                    </article>
+
+                    <article class="proyecto-card">
+                        <h3>Weather Dashboard</h3>
+                        <p>Dashboard meteorológico con datos en tiempo real y pronósticos</p>
+                        <p><strong>Tecnologías:</strong>JavaScript, API REST, Chart.js</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="contacto">
+                <h2>Contacto</h2>
+                <form action="/contacto" method="POST" class="formulario-contacto">
+
+              
+
+                    <legend>Envíame un Mensaje</legend>
+                    
+                 <div>
+                    <label for="nombre">Nonbre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required minlength="2">
+                 </div>
+
+                 <div>
+                    <label for="email">Correo electronico:</label>
+                    <input type="email" id="email" name="email" required>
+
+                 </div>
+
+                 <div>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono">
+                 </div>
+
+                 <div>
+                    <label for="asunto">Asunto:</label>
+                    <select id="asunto" name="asunto" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="proyecto">Consulta sobre proyecto</option>
+                        <option value="colaboracion">Propuesta de colaboración</option>
+                        <option value="empleo">Oportunidad laboral</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                 </div>
+
+                 <div>
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required minlength="10"></textarea>
+                 </div>
+
+                 <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="newletter" value="si">
+                        Suscribirme al newletter
+                    </label>
+                 </div>
+
+               
+
+                <button type="submit">Enviar Nensaje</button> 
+            </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2025 Ignacio Carrera. Todos los derechos reservados.</p>
+            <p>
+                <a href="https://github.com/Anochec" target="_blank" rel="noopener noreferrer">GitHub</a> |
+                <a href="https://www.linkedin.com/in/ignacio-carrera-584194254/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </p>
+        </footer>
+    </body>
+</html>
